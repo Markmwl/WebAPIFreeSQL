@@ -25,7 +25,7 @@ namespace Common.Email
 			{
 				Text = "<h1>测试内容</h1>" + Message
 			};
-			//测试girhub
+
 			//创建Multipart添加附件
 			Multipart multipart = new Multipart("mixed");
 			multipart.Add(body);
