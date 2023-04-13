@@ -1,0 +1,2 @@
+﻿
+FreeSql.Generator -Razor 1 -NameOptions 0,0,0,1 -NameSpace Model.Mark -DB "Oracle,user id=Mark;password=123456; data source=//127.0.0.1:1521/ORCL;Pooling=true;Min Pool Size=2" -FileName "{name}.cs" -Filter View+StoreProcedure

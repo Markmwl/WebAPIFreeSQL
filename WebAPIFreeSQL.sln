@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIFreeSQL", "WebAPIFreeSQL\WebAPIFreeSQL.csproj", "{89ECB26D-F208-4948-86C2-6DCE51614359}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8E8A9239-53BC-4949-9832-CE5D696C1BD9} = {8E8A9239-53BC-4949-9832-CE5D696C1BD9}
+		{D1D7453F-3B80-4139-8B56-3BFB52FB3CB9} = {D1D7453F-3B80-4139-8B56-3BFB52FB3CB9}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{8E8A9239-53BC-4949-9832-CE5D696C1BD9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{D1D7453F-3B80-4139-8B56-3BFB52FB3CB9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8E8A9239-53BC-4949-9832-CE5D696C1BD9} = {8E8A9239-53BC-4949-9832-CE5D696C1BD9}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminLTE", "AdminLTE\AdminLTE.csproj", "{A5B850C9-CD20-4B89-8460-CB8EB0C4D226}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{32CE9CF1-D374-48BE-9574-00E83B53DEF7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89ECB26D-F208-4948-86C2-6DCE51614359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89ECB26D-F208-4948-86C2-6DCE51614359}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89ECB26D-F208-4948-86C2-6DCE51614359}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89ECB26D-F208-4948-86C2-6DCE51614359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E8A9239-53BC-4949-9832-CE5D696C1BD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E8A9239-53BC-4949-9832-CE5D696C1BD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E8A9239-53BC-4949-9832-CE5D696C1BD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E8A9239-53BC-4949-9832-CE5D696C1BD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1D7453F-3B80-4139-8B56-3BFB52FB3CB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1D7453F-3B80-4139-8B56-3BFB52FB3CB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1D7453F-3B80-4139-8B56-3BFB52FB3CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1D7453F-3B80-4139-8B56-3BFB52FB3CB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B850C9-CD20-4B89-8460-CB8EB0C4D226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B850C9-CD20-4B89-8460-CB8EB0C4D226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B850C9-CD20-4B89-8460-CB8EB0C4D226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B850C9-CD20-4B89-8460-CB8EB0C4D226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32CE9CF1-D374-48BE-9574-00E83B53DEF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32CE9CF1-D374-48BE-9574-00E83B53DEF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32CE9CF1-D374-48BE-9574-00E83B53DEF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32CE9CF1-D374-48BE-9574-00E83B53DEF7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6616994B-F49E-4B82-9B0B-4E15F184E627}
+	EndGlobalSection
+EndGlobal
