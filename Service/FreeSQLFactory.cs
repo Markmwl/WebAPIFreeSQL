@@ -20,27 +20,16 @@ namespace Service
         public static IFreeSql freeSql { get; set; }
 
         /// <summary>
-        /// 获取数据库Connection连接
-        /// </summary>
-        /// <returns></returns>
-        private static string GetCon()
-        {
-           #if DEBUG
-            Console.WriteLine("Debug模式！userName：Mark");
-            return @"user id=Mark;password=123456; data source=//127.0.0.1:1521/ORCL;Pooling=true;Min Pool Size=1";
-           #else
-            Console.WriteLine("Release模式！userName：ZX");
-            return @"user id=ZX;password=123456; data source=//127.0.0.1:1521/ORCL;Pooling=true;Min Pool Size=1";
-           #endif
-        }
-
-        /// <summary>
         /// 创建FreeSql对象
         /// </summary>
-        public static void CreateFreeSQL()
+        /// <param name="dataSource">数据库连接池</param>
+        public static void CreateFreeSQL(DataSourceProperty dataSource)
         {
+            Console.WriteLine("数据库用户名："+dataSource.username);
+            Console.WriteLine("数据库连接地址：" + dataSource.url);
+            string sql = string.Format("user id={0};password={1}; data source={2};Pooling=true;Min Pool Size=1",dataSource.username,dataSource.password,dataSource.url);
             freeSql = new FreeSql.FreeSqlBuilder()
-                    .UseConnectionString(FreeSql.DataType.Oracle, GetCon())
+                    .UseConnectionString(FreeSql.DataType.Oracle, sql)
                     .UseMonitorCommand(cmd => Console.WriteLine($"Sql：{cmd.CommandText}"))//监听SQL语句
 					//.UseAutoSyncStructure(true) //自动同步实体结构到数据库，FreeSql不会扫描程序集，只有CRUD时才会生成表。
 				    //.UseSlave("connectionString1", "connectionString2") //使用从数据库，支持多个
@@ -71,8 +60,14 @@ namespace Service
                     //发送短信给负责人
                     Console.WriteLine("发送邮件！");
 
-                    EmailHelper.SendEmail($"报警信息:ManagedThreadId:{Thread.CurrentThread.ManagedThreadId};" +
-				$" FullName:{e.EntityType.FullName} ElapsedMilliseconds:{e.ElapsedMilliseconds}ms, {e.Sql}");
+                    EmailModel email = new EmailModel() {
+                        Title = "WebAPIFreeSQL报警信息",
+                        Content = $"报警信息:ManagedThreadId:{Thread.CurrentThread.ManagedThreadId};" + $" FullName:{e.EntityType.FullName} ElapsedMilliseconds:{e.ElapsedMilliseconds}ms, {e.Sql}",
+                        FromPeople = new List<Person>() { new Person() { Name="发件人Mark", Email= "528414865@qq.com" } },
+                        ToPeople = new List<Person>() { new Person() { Name = "收件人Mark", Email = "528414865@qq.com" } }
+                    };
+
+                    EmailHelper.SendEmail(email);
 				}
 			};
         }

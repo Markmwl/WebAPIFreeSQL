@@ -1,4 +1,5 @@
 using FreeSql;
+using Model.Common;
 using Model.Mark;
 using Service;
 
@@ -10,9 +11,6 @@ namespace AdminLTE
 		{
 			var builder = WebApplication.CreateBuilder(args);
 
-			// 创建FreeSQL对象
-			FreeSQLFactory.CreateFreeSQL();
-
 			Func<IServiceProvider, IFreeSql> fsqlFactory = r =>
 			{
 				return FreeSQLFactory.freeSql;
@@ -21,9 +19,16 @@ namespace AdminLTE
 
 			builder.Services.AddControllers();
 
-			var app = builder.Build();
+            // 添加配置中心
+            builder.Configuration.AddNacosV2Configuration(builder.Configuration.GetSection("Nacos"));
 
-			app.UseAuthorization();
+            var app = builder.Build();
+
+            // 创建FreeSQL对象
+            FreeSQLFactory.CreateFreeSQL(app.Configuration.GetSection("DataSource").Get<DataSourceProperty>());
+
+
+            app.UseAuthorization();
 
 			app.UseFreeAdminLtePreview("/",
   typeof(XXLUSER),

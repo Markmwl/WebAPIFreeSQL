@@ -18,7 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminLTE", "AdminLTE\AdminLTE.csproj", "{A5B850C9-CD20-4B89-8460-CB8EB0C4D226}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{32CE9CF1-D374-48BE-9574-00E83B53DEF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{32CE9CF1-D374-48BE-9574-00E83B53DEF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorTemplates", "RazorTemplates\RazorTemplates.csproj", "{62D1E0AF-D6FE-4EF2-A5F8-CC3605052FE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +48,10 @@ Global
 		{32CE9CF1-D374-48BE-9574-00E83B53DEF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32CE9CF1-D374-48BE-9574-00E83B53DEF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32CE9CF1-D374-48BE-9574-00E83B53DEF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62D1E0AF-D6FE-4EF2-A5F8-CC3605052FE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62D1E0AF-D6FE-4EF2-A5F8-CC3605052FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62D1E0AF-D6FE-4EF2-A5F8-CC3605052FE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62D1E0AF-D6FE-4EF2-A5F8-CC3605052FE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,6 @@
-using FreeSql;
-using Model.Mark;
+using Model.Common;
+using Nacos.AspNetCore.V2;
 using Service;
-using System.Data;
-using System.Diagnostics;
 
 namespace WebAPIFreeSQL
 {
@@ -27,20 +25,26 @@ namespace WebAPIFreeSQL
 
 
             // Add services to the container.
-
+           
             builder.Services.AddControllers().AddNewtonsoftJson();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(o =>
             {
                 var basePah = System.AppDomain.CurrentDomain.BaseDirectory;
-                var xmlPath = Path.Combine(basePah, Process.GetCurrentProcess().ProcessName + ".XML");//"WebAPIFreeSQL.XML"
+                //var xmlPath = Path.Combine(basePah, Process.GetCurrentProcess().ProcessName + ".XML");//"WebAPIFreeSQL.XML"
+                var xmlPath = Path.Combine(basePah, "WebAPIFreeSQL.xml");//"WebAPIFreeSQL.XML"
                 Console.WriteLine(xmlPath);
-                var xmlPathModel = Path.Combine(basePah, "Model.XML");
+                var xmlPathModel = Path.Combine(basePah, "Model.xml");
                 Console.WriteLine(xmlPathModel);
                 o.IncludeXmlComments(xmlPath);
                 o.IncludeXmlComments(xmlPathModel);
             });
+
+            // 注册服务到Nacos
+            builder.Services.AddNacosAspNet(builder.Configuration, section: "Nacos");
+            // 添加配置中心
+            builder.Configuration.AddNacosV2Configuration(builder.Configuration.GetSection("Nacos"));
 
             var app = builder.Build();
 
@@ -56,21 +60,31 @@ namespace WebAPIFreeSQL
             //}
 
             // 创建FreeSQL对象
-            FreeSQLFactory.CreateFreeSQL();
+            FreeSQLFactory.CreateFreeSQL(app.Configuration.GetSection("DataSource").Get<DataSourceProperty>());
 
-            // Configure the HTTP request pipeline.
-            //仅在调试过程中(vs中开启运行)执行的代码（和debug和release无关，若想在两模式中运行代码轻松使用 #if DEBUG #else #endif）
-            if (app.Environment.IsDevelopment())
+            //配置Smtp邮件服务器
+            ServerEmail.smtpEmail = app.Configuration.GetSection("Email").Get<SmtpEmail>();
+            Console.WriteLine("邮件服务器配置成功！");
+
+            if (app.Environment.EnvironmentName == "dev")
             {
+                Console.WriteLine("当前环境：开发环境！");
                 //在项目启动时，从容器中获取IFreeSql实例，并执行一些操作：同步表，种子数据,FluentAPI等
                 FreeSQLFactory.SetCodeFirst();
+            }
+            else if (app.Environment.EnvironmentName == "test")
+            {
+                Console.WriteLine("当前环境：测试环境！");
+            }
+            else if (app.Environment.EnvironmentName == "prod")
+            {
+                Console.WriteLine("当前环境：生产环境！");
             }
 
             app.UseSwagger();
             app.UseSwaggerUI();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
